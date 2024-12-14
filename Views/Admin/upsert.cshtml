@@ -1,0 +1,35 @@
+﻿@model Ecommerce.Models.Admin_Categories
+@{
+    ViewData["Title"] = "upsert";
+}
+
+<form method="post">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="text-center">@(Model.Id==0?"Create Categories": "Update Categories")</h5>
+                    </div>
+                    <div class="row form-group" style="padding-top:30px;">
+                        <div class="col-6 text-center"> <label>Category Name</label></div>
+                        <div class="col-6"> <input asp-for="Catergory_Name" placeholder="Eg.Autobiography" /></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="offset-4 col-3"> <button type="submit" class="btn btn-success form-control">@(Model.Id==0?"Create":"Update")</button></div>
+                        <div class="col-3"><a class="btn btn-info" asp-controller="Admin" asp-action="Category">Back to list</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <script type="text/javascript">
+            alert('@ViewBag.ErrorMessage');
+        </script>
+    }
+}
+

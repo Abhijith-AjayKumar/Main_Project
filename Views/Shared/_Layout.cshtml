@@ -1,0 +1,161 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@{ 
+    var Role = Accessor.HttpContext.Session.GetString("Role");
+    var Name = Accessor.HttpContext.Session.GetString("AdminProfile");
+    var profile = Accessor.HttpContext.Session.GetString("UserProfile");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ecommerce</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+
+</head>
+<body style="background-color: rgb(134 232 152 / 0.24) ">
+    @if (Role == null)
+    {
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #9cdba9;">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Common" asp-action="Login">Ecommerce</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Common" asp-action="Login">Home</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Common" asp-action="Registration">Registration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Common" asp-action="Login">Login</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </header>
+    }
+    @if (Role == "Admin")
+    {
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #9cdba8;">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Admin" asp-action="admin_Home">Ecommerce</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="admin_Home">Home</a>
+                            </li>
+
+                            <li class="dropdown show">
+                                <a class="btn dropdown-toggle text-light" role="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                                    Content Management
+                                </a>
+                                <ul class="dropdown-menu" style="background-color:#9cdba8;" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item text-light" asp-action="Category">Category</a></li>
+                                    <li><a class="dropdown-item text-light" asp-action="CoverType">Cover Type</a></li>
+                                    <li><a class="dropdown-item text-light" asp-action="Product_List">Product List</a></li>
+                                    <li><a class="dropdown-item text-light" asp-action="Company_List">Company </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="Create_Company">User/Company</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="Manage_Order">Manage Order</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" style="text-decoration:solid;text-shadow:2px 2px 2px red;" asp-area="" asp-controller="Admin" asp-action="Admin_Profile">@Name</a>
+                            </li>
+                            <li class="nav-item">
+
+                                <form asp-action="logout" asp-controller="Admin" method="post">
+                                    <a href="#" onclick="this.closest('form').submit(); return confirm('Logout ?');" class="nav-link text-light">Logout</a>
+                                </form>
+                                @*<a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="logout">Logout</a>*@
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    }
+    @if (Role == "User")
+    {
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #9cdba9;">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecommerce</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="UserHome">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="My_Orders">Order History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="shoppingCart">Cart</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="My_Profile">@profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-action="logout" asp-controller="User" method="post">
+                                    <a href="#" onclick="this.closest('form').submit(); return confirm('Logout ?');" class="nav-link text-light">Logout</a>
+                                </form>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </header>
+    }
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background-color: #50b498;">
+        <div class="container">
+            &copy; 2024 - Ecommerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

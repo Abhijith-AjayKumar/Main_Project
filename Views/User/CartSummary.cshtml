@@ -1,0 +1,75 @@
+﻿@model Ecommerce.Models.CartSummary
+@{
+    ViewData["Title"] = "CartSummary";
+}
+
+<h1>CartSummary</h1>
+
+<div class="container">
+    <form method="post">
+        <div class="row">
+
+            <div class="col-md-6">
+                <h2>Pickup Details</h2>
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" asp-for="Order_DetailsModel.Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Phone">Phone</label>
+                    <input type="tel"  asp-for="Order_DetailsModel.phone" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Street">Street</label>
+                    <input type="text" asp-for="Order_DetailsModel.Address" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="City">City</label>
+                    <input type="text" asp-for="Order_DetailsModel.City" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="State">State</label>
+                    <input type="text" asp-for="Order_DetailsModel.State" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="PostalCode">Postal Code</label>
+                    <input type="text" asp-for="Order_DetailsModel.Pin" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h2>Order Summary</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Book Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UserCartModel)
+                        {
+                            <tr>
+                                <td>@item.Admin_ProductList.Title</td>
+                                <td>@item.Price.ToString("C")</td>
+                                <td>@item.Count</td>
+                                <td>@((item.Price*item.Count).ToString("C"))</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total:</td>
+                            <td>@Model.UserCartModel.Sum(x => x.Price * x.Count).ToString("C")</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </div>
+        </div>
+    </form>
+</div>

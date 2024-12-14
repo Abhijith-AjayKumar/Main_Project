@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Ecommerce.Models.admin_ProductList>
+@{
+    ViewData["Title"] = "UserHome";
+}
+<div class="container">
+    <div class="row">
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-4">
+                    <div class="container text-center" style="background-color: #def9ce;padding-top :30px">
+                        <div class="img-fluid form-group">
+                            <img src="~/Image/@item.Photo" height="100" width="70" asp-append-version="true" />
+                        </div>
+                        <div class="form-group">
+                            @Html.DisplayFor(model => item.Title)
+                        </div>
+                        <div class="form-group">
+                            @Html.DisplayFor(model => item.Author)
+                        </div>
+                        <div class="form-group">
+                            <label>Price: </label>
+                            <s> @Html.DisplayFor(model => item.Price)</s>
+                        </div>
+                        <div class="form-group">
+                            <label>As low as: </label>
+                            @Html.DisplayFor(model => item.Price100)
+                        </div>
+                        <div style="padding-bottom:30px">
+                            <h2><a asp-action="OrderProduct" asp-controller="User" asp-route-id="@item.Id" class="text-dark btn btn-success">Details</a></h2>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+        }
+    </div>
+
+</div>
+@section Scripts {
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <script type="text/javascript">
+            alert('@ViewBag.ErrorMessage');
+        </script>
+    }
+}

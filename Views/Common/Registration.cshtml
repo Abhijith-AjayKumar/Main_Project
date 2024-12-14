@@ -1,0 +1,61 @@
+﻿@model Ecommerce.Models.Register
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<h1>Registration</h1>
+<form method="post">
+    <div class="container box-shadow" style="box-shadow:rgb(97 144 217) 1px 1px 2px 2px;">
+        <div class="row form-group col-12" style="padding-top:5%;">
+            <a class="btn form-control col-12" asp-action="Login" style="font-size:large;background-color:blue"> Sign In</a>
+        </div>
+        <div class="row form-group col-12">
+            <input asp-for="Name" class="form-control" placeholder="Name" />
+            <span class="text-danger"asp-validation-for="Name"></span>
+        </div>
+        <div class="row form-group col-12">
+            <input asp-for="Email" class="form-control" placeholder="Email" />
+            <span class="text-danger"asp-validation-for="Email"></span>
+        </div>
+        <div class="row form-group col-12">
+            <input asp-for="Phone_No" class="form-control" placeholder="Phone No" />
+            <span class="text-danger"asp-validation-for="Phone_No"></span>
+        </div>
+        <div class="row form-group col-12">
+            <input asp-for="Address" class="form-control col-12" placeholder="Street Address" />
+            <span class="text-danger"asp-validation-for="Address"></span>
+        </div>
+        <div class="row form-group col-12">
+            <input asp-for="State" class="form-control col-12" placeholder="State" />
+            <span class="text-danger"asp-validation-for="State"></span>
+        </div>
+        <div class="row form-group">
+            <div class="col-6">
+                <input asp-for="City" class="form-control" placeholder="City" />
+                <span class="text-danger"asp-validation-for="City"></span>
+            </div>
+            <div class="col-6">
+                <input asp-for="Pin" class="form-control col-11" placeholder="Postal Code" />
+                <span class="text-danger"asp-validation-for="Pin"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-6">
+                <input asp-for="Password" class="form-control " placeholder="Password" id="password" />
+                <span class="text-danger"asp-validation-for="Password"></span>
+            </div>
+            <div class="col-6">
+                <input asp-for="Confirm_Password" class="form-control col-11" placeholder="Confirm password" id="con_password" />
+                <span class="text-danger"asp-validation-for="Confirm_Password"></span>
+            </div>
+        </div>
+        <div class="row form-group col-12"><input type="submit" value="Register" class="btn btn-success form-control" /></div>
+        <div class="row form-group" style="padding-bottom:5%">
+            <div class="col-6"><a href="#" class="fa fa-facebook btn form-control" style="background-color:#0094ff"> FaceBook</a></div>
+            <div class="col-6"><a href="#" class="fa fa-google btn form-control" style="background-color:#ff0000"> Google</a></div>
+        </div>
+    </div>
+</form>
+
+
+

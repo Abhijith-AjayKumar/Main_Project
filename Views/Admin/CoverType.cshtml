@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Ecommerce.Models.admin_CoverType>
+@{
+    ViewData["Title"] = "CoverType";
+}
+
+<div class="card">
+    <div class="card-header" style="background-color:lightgreen;">
+        <h2 class="col-8">Category List</h2>
+        <a class="col-3 btn btn-danger font-weight-bolder form-control" asp-controller="Admin" asp-action="Upsert_CT">+ Create New Category</a>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-success" style="background-color:white">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cover_Type)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cover_Type)
+                            </td>
+                            <td>
+                                <a asp-action="Upsert_CT" asp-route-id="@item.Id" asp-controller="Admin">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAsNJREFUWEftmMurjlEUxn9n4K5cEplRLrkUuUxQhNwVkokylzIyYXIYiGIof4GUgUuJ3O+UpGQgGZlSLrnmVvZzrK317bO/7/3e872vTh27Tqd9Xc/7rGettffXRT9rXf0MDwMa0GRgGPCslVdaMbQUWAwMLunWO8ANt2cacBKYb2MvgB3Aw9y5zQAdA3aVBKLlArIO+GZ7pwO3gQnJWZ/sY5+mNnKANgFn+whmA/DV9s4AbgHjrf/L5kZa/w2wBHjubeUA7QMO2iJ9nQ4taj+Ao46ZWbZvnG0UY5uB1wHENWC0jb8ExOL3aCAHaD/QbQsOhP/ql2kCcxcYY5s+B72stTENzQRuOua2AqfrAjTXdBTByI70sgx4bEYVbfeBidbfbqLv6VbJ0DzgunOHZ/VtYEVR+96YmmSTH4GpwKuqGVpg2hjlBCy3S4/DbUz6+QBMcWvkrnNFoi6roYXmphg9PwFF6gXLPV7E0bZf06DPTl22CLgCjLBTZWhLAHLeWdkGnHL93Jq/050AEpjLIdwjMwr99SHhXXXGFdL3gBj+uTWVMCQwcoVqk1o7YJSLNiaAJW7loo4YUghfLACTS4xrkiQr0ctDDXmurMsE5hIwpAUzaWIUMymYPUF3RwKgXom3DCDlEYEZ6gQsF2gsttlWTMfawBdgtekorlEiPGGdjgD5dJDTQ8qMiuxK4EGDav+4qGlpKsOQP+hwKKR7naE5Vp98/VqVAaMttQDyVKfMqHYtDyngUcJM7NYCKF5LxPBuV79Um1a0AFMbQ7mPV52S8J80YaZWhlKb78xNRWAqZUg5SH+5dibUsF7347o1VOCJtqcrE3XbFqvWUF8u+WXAyu0Sv5psHfKbc4lR7ypdrv5FU/L015Wmb/vj4Z67s2ZEabbvMVf0lNZDblDFwFQH9dzWy6NXG9C/frRF9H+Gimj6Dbm7yCWHYyFCAAAAAElFTkSuQmCC" />
+                                    Edit
+                                </a> |
+
+                                <!-- Delete Form -->
+                                <form asp-action="CoverType" asp-controller="Admin" asp-route-id="@item.Id" method="post" style="display:inline;">
+                                    <a href="#" onclick="this.closest('form').submit(); return confirm('Are You Sure?');" class="text-danger">Delete</a>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>No CoverType Exist</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

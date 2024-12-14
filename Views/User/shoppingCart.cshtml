@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Ecommerce.Models.UserCart_Tb>
+
+@{
+    ViewData["Title"] = "shoppingCart";
+}
+<div class="form-group">
+    <h1>shoppingCart</h1>
+    <div class="offset-9"><a asp-action="UserHome" class="btn btn-success">Continue Shopping</a></div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Image/@item.Admin_ProductList.Photo" class="rounded-circle" height="40" width="40" asp-append-version="true" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Admin_ProductList.Title) <br />
+                        @Html.DisplayFor(modelItem => item.Admin_ProductList.Description)
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        Rs.@Html.DisplayFor(modelItem => item.Price) X<span id="count-@item.Id"> @Html.DisplayFor(modelItem => item.Count)</span>
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            <form method="post" asp-action="UpdateCount">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <input type="hidden" name="action" value="increment" />
+                                <button type="submit" class="btn btn-success">+ </button>
+                            </form>
+                            <form method="post" asp-action="UpdateCount">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <input type="hidden" name="action" value="decrement" />
+                                <button type="submit" class="btn btn-danger"> - </button>
+                            </form>
+                        </div>
+                    </td>
+                    <td>
+                        <form asp-action="Cart_Del" asp-controller="User" asp-route-id="@item.Id" method="post">
+                            <a href="#" onclick="this.closest('form').submit(); return confirm('Are You Sure?');" class="btn btn-danger">Delete</a>
+                        </form>
+                    </td>
+                </tr>
+
+            }
+
+        }
+        else
+        {
+            <tr>
+                <td>No Catogories Exist</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="container col-3 form-group offset-9" style="background-color:rgb(255 0 0)">
+    <table>
+        <tr>
+            <td style="text-decoration-color:rgb(76 255 0)">Total</td>
+            <td style="text-decoration-color:rgb(76 255 0)">@ViewBag.TotalAmount</td>
+        </tr>
+    </table>
+</div>
+<div class="form-group offset-9">
+    <a asp-action="CartSummary" asp-controller="USer" class="btn btn-success form-control">Summary</a>
+</div>

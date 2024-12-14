@@ -1,0 +1,160 @@
+﻿@model Ecommerce.Models.CartSummary
+
+@{
+    ViewData["Title"] = "Order_Edit";
+}
+
+<div class="container">
+    <form method="post">
+        <div class="row">
+
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Name</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Email</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Address</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Address" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Address" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Phone NO</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.phone" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.phone" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">City</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.City" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.City" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">State</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.State" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.State" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Postal Code</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Pin" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Pin" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Order Date</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Order_Date" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Order_Date" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Shipping Date</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Shipping_Date" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Shipping_Date" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Payment Date</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Payment_Date" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Payment_Date" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Carrier</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Carrier" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Carrier" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Tracking Id</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Tracking_Id" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Tracking_Id" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Transaction Id</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Transcation_Id" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Transcation_Id" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Payment Status</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Payment_Status" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Payment_Status" class="text-danger col-12"></span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Order Status</label>
+                    <div class="col-8">
+                        <input asp-for="Order_DetailsModel.Order_Status" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Order_DetailsModel.Order_Status" class="text-danger col-12"></span>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <h2>Order Summary</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Book Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UserCartModel)
+                        {
+                            <tr>
+                                <td>@item.Admin_ProductList.Title</td>
+                                <td>@item.Price.ToString("C")</td>
+                                <td>@item.Count</td>
+                                <td>@((item.Price * item.Count).ToString("C"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total:</td>
+                            <td>@Model.UserCartModel.Sum(x => x.Price * x.Count).ToString("C")</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <input type="hidden" asp-for="Order_DetailsModel.Id" />
+                <input type="submit" class="btn btn-success" asp-action="Order_Edit" value="Save" /> |
+                <a class="btn btn-primary" asp-action="Manage_Order">Back to List</a>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,100 @@
+﻿@model Ecommerce.Models.Admin_Register
+@{
+    ViewData["Title"] = "admin_Reg";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="text-center">Register an User Account</h5>
+                </div>
+                <div class="card-body justify-content-center">
+                    <form method="post">
+                        <div class="mb-3">
+
+                            <input asp-for="Name" class="form-control" placeholder="Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+
+                            <input asp-for="Email" class="form-control" placeholder="Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <input asp-for="Phone_No" class="form-control" placeholder="Phone No" />
+                            <span asp-validation-for="Phone_No" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <input asp-for="Address" class="form-control" placeholder="Street Address" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <input asp-for="State" class="form-control" placeholder="State" />
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="row form-group">
+                            <div class="col-6">
+                                <input asp-for="City" class="form-control " placeholder="City" />
+                                <span asp-validation-for="City" class="text-danger"> </span>
+                            </div>
+                            <div class="col-6">
+                                <input asp-for="Pin" class="form-control " placeholder="Postal Code" />
+                                <span asp-validation-for="Pin" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row form-group">
+                            <div class="col-6">
+                                <input asp-for="Password" class="form-control " placeholder="Password" />
+                                <span asp-validation-for="Password" class="text-danger"> </span>
+                            </div>
+                            <div class="col-6">
+                                <input asp-for="Confirm_Password" class="form-control " placeholder="Confirm password"/>
+                                <span asp-validation-for="Confirm_Password" class="text-danger" ></span>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <select class="form-control " asp-for="Role">
+                                <option value="" disabled selected>Select a role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Employee">Employee</option>
+                                <option value="Company_Customer">Company Customer</option>
+                            </select>
+                            <span asp-validation-for="Role" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 ">
+                            <select class="form-control" asp-for="Company">
+                                <option value="" disabled selected>Select a company</option>
+                                <option value="1">Company A</option>
+                                <option value="2">Company B</option>
+                                <option value="3">Company B</option>
+                                <option value="4">Company B</option>
+                            </select>
+                            <span asp-validation-for="Role" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
